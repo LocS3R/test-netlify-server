@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ... -->
+  </head>
+  <body>
+    <!-- ... -->
+    <button id="helloButton">Click Me!</button>
+    <p id="result"></p>
+
+    <script>
+      const helloButton = document.getElementById("helloButton");
+      const resultElement = document.getElementById("result");
+
+      helloButton.addEventListener("click", () => {
+        fetch("/hello", {
+          method: "POST",
+        })
+          .then((response) => response.text())
+          .then((result) => {
+            resultElement.innerText = result;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            resultElement.innerText = "Lỗi khi gửi yêu cầu!";
+          });
+      });
+    </script>
+  </body>
+</html>
